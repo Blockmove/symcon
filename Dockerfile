@@ -3,8 +3,9 @@
 #
 # docker build -f Dockerfile -t blockmove/symcon .
 #
-# 2017-02-18 : Update to IP-Symcon Version 4.1
+# 2017-02-18 : Update to IP-Symcon Version 4.2
 #
+# 2017-06-11 : Added locales to apt get -y install
 # 2015-07-19 : Removed Installation of mc
 # 2015-07-16 : Removed EXPOSE use option --net="host" instead 
 # 2015-07-05 : Added Volume "/usr/share/symcon"
@@ -27,7 +28,7 @@ ENV HOME /
 RUN \
     apt-get update &&\
     apt-get -y upgrade &&\
-    apt-get -y install wget
+    apt-get -y install wget locales
     
 RUN \
     echo "deb [arch=amd64] http://apt.symcon.de/ stable ubuntu" >> /etc/apt/sources.list &&\
@@ -35,7 +36,7 @@ RUN \
     apt-get update
 
 RUN \
-    apt-get -y install mc symcon
+    apt-get -y install symcon
     
 RUN \
     cp -R /usr/share/symcon /usr/share/symcon.org &&\
