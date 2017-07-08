@@ -3,6 +3,7 @@
 #
 # docker build -f Dockerfile -t blockmove/symcon .
 #
+# 2017-07-08 : Created testing branch
 # 2017-07-08 : Created beta branch
 # 2017-02-18 : Update to IP-Symcon Version 4.2
 #
@@ -32,7 +33,7 @@ RUN \
     apt-get -y install wget locales
     
 RUN \
-    echo "deb [arch=amd64] http://apt.symcon.de/ beta ubuntu" >> /etc/apt/sources.list &&\
+    echo "deb [arch=amd64] http://apt.symcon.de/ testing ubuntu" >> /etc/apt/sources.list &&\
     wget -qO - http://apt.symcon.de/symcon.key | apt-key add - &&\
     apt-get update
 
