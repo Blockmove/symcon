@@ -1,4 +1,4 @@
-### Unoffical Docker-Container for IP-Symcon 4.2 stable
+### Unoffical Docker-Container for IP-Symcon 4.3 beta
 
 ***
 
