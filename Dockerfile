@@ -3,6 +3,8 @@
 #
 # docker build -f Dockerfile -t blockmove/symcon .
 #
+# 2017-09-24 : Update to IP-Symcon Version 4.3
+#              added tzdata
 # 2017-07-08 : Created beta branch
 # 2017-02-18 : Update to IP-Symcon Version 4.2
 #
@@ -29,7 +31,7 @@ ENV HOME /
 RUN \
     apt-get update &&\
     apt-get -y upgrade &&\
-    apt-get -y install wget locales
+    apt-get -y install wget locales tzdata
     
 RUN \
     echo "deb [arch=amd64] http://apt.symcon.de/ beta ubuntu" >> /etc/apt/sources.list &&\
