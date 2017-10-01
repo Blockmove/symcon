@@ -1,8 +1,10 @@
 # -----------------------------------------------------------------------------
 # blockmove/symcon
 #
-# docker build -f Dockerfile -t blockmove/symcon .
+# docker build -f Dockerfile -t blockmove/symcon:testing .
 #
+# 2017-10-01 : added apt-utils
+#              setup timezone
 # 2017-09-24 : Update to IP-Symcon Version 4.3
 #              added tzdata
 # 2017-07-08 : Created testing branch
@@ -31,6 +33,7 @@ ENV HOME /
 
 RUN \
     apt-get update &&\
+    apt-get -y install apt-utils &&\    
     apt-get -y upgrade &&\
     apt-get -y install wget locales tzdata
     
@@ -58,6 +61,19 @@ RUN \
     locale-gen de_DE.UTF-8 &&\
     locale-gen en_US.UTF-8 &&\
     dpkg-reconfigure locales
+
+#Setup locale
+#Change to your location
+RUN \
+    locale-gen de_DE.UTF-8 &&\
+    locale-gen en_US.UTF-8 &&\
+    dpkg-reconfigure locales
+
+#Setup Timezone    
+#Change to your location
+RUN \    
+    ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime &&\
+    dpkg-reconfigure -f noninteractive tzdata
 
 COPY symcon_start.sh /usr/bin/
 RUN \
