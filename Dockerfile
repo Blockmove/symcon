@@ -1,8 +1,10 @@
 # -----------------------------------------------------------------------------
 # blockmove/symcon
 #
-# docker build -f Dockerfile -t blockmove/symcon .
+# docker build -f Dockerfile -t blockmove/symcon:beta .
 #
+# 2017-10-01 : added apt-utils
+#              setup timezone
 # 2017-09-24 : Update to IP-Symcon Version 4.3
 #              added tzdata
 # 2017-07-08 : Created beta branch
