@@ -30,6 +30,7 @@ ENV HOME /
 
 RUN \
     apt-get update &&\
+    apt-get -y install apt-utils &&\
     apt-get -y upgrade &&\
     apt-get -y install wget locales tzdata
     
@@ -57,6 +58,12 @@ RUN \
     locale-gen de_DE.UTF-8 &&\
     locale-gen en_US.UTF-8 &&\
     dpkg-reconfigure locales
+
+#Setup Timezone    
+#Change to your location
+RUN \    
+    ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime &&\
+    dpkg-reconfigure -f noninteractive tzdata
 
 COPY symcon_start.sh /usr/bin/
 RUN \
