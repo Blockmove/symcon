@@ -3,6 +3,7 @@
 # ---------------
 # Start IP-Symcon
 #
+# 2017-10-01: Removed setup timezone
 # 2015-07-05: Added test if configuration in "/usr/share/symcon" exit
 # ---------------
 
@@ -38,10 +39,6 @@ else
     echo "Copy template files "
     cp -R /root.org/* /root
 fi
-
-echo "Set timezone"
-ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime &&
-dpkg-reconfigure -f noninteractive tzdata
 
 echo "Start IP-Symcon"
 /usr/bin/symcon
