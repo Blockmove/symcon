@@ -3,12 +3,16 @@
 # ---------------
 # Start IP-Symcon
 #
+# 1017-10-29: Set language
 # 2017-10-01: Removed setup timezone
 # 2015-07-05: Added test if configuration in "/usr/share/symcon" exit
 # ---------------
 
 # Versteckte Files (dot-files) bearbeiten (cp,mv,rm)
 shopt -s dotglob
+
+# Set language
+export LANG=de_DE@euro
 
 #test if configuration in /usr/share/symcom exits.
 #if not -> copy template files
