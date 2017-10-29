@@ -12,7 +12,7 @@
 shopt -s dotglob
 
 # Set language
-export LANG=de_DE@euro
+#export LANG=de_DE@euro
 
 #test if configuration in /usr/share/symcom exits.
 #if not -> copy template files
