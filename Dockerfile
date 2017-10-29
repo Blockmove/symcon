@@ -3,6 +3,8 @@
 #
 # docker build -f Dockerfile -t blockmove/symcon:beta .
 #
+# 2017-10-29 : chaged language settings (locales)
+#
 # 2017-10-01 : added apt-utils
 #              setup timezone
 # 2017-09-24 : Update to IP-Symcon Version 4.3
@@ -34,7 +36,22 @@ RUN \
     apt-get update &&\
     apt-get -y install apt-utils &&\
     apt-get -y upgrade &&\
-    apt-get -y install wget locales tzdata
+    apt-get -y install language-pack-de-base language-pack-de wget locales tzdata
+
+#Setup locale
+#Change to your location
+RUN \
+    locale-gen de_DE.UTF-8 &&\
+    locale-gen en_US.UTF-8 &&\
+    dpkg-reconfigure locales &&\
+    echo "export LANG=de_DE@euro" >> /etc/environment &&\
+    update-locale LANG=de_DE.UTF-8
+
+#Setup Timezone    
+#Change to your location
+RUN \    
+    ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime &&\
+    dpkg-reconfigure -f noninteractive tzdata
     
 RUN \
     echo "deb [arch=amd64] http://apt.symcon.de/ beta ubuntu" >> /etc/apt/sources.list &&\
@@ -53,19 +70,6 @@ RUN \
 RUN \
     apt-get clean &&\
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
-    
-#Setup locale
-#Change to your location
-RUN \
-    locale-gen de_DE.UTF-8 &&\
-    locale-gen en_US.UTF-8 &&\
-    dpkg-reconfigure locales
-
-#Setup Timezone    
-#Change to your location
-RUN \    
-    ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime &&\
-    dpkg-reconfigure -f noninteractive tzdata
 
 COPY symcon_start.sh /usr/bin/
 RUN \
